@@ -1,4 +1,4 @@
-package ru.aston.testproj.dto;
+package ru.aston.testproj.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,7 @@
-package ru.aston.testproj.model;
+package ru.aston.testproj.domain.model;
 
 import lombok.Data;
+
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -13,7 +14,7 @@ import jakarta.persistence.Table;
  * @author tuspring
  */
 @Entity
-@Table
+@Table(name = "accounts")
 @Data
 public class Account {
 
@@ -23,7 +24,7 @@ public class Account {
 
     private String name;
 
-    private String PIN;
+    private String pin;
 
-    private Long founds;//todo по идее это два спареных целочисленных
+    private Long funds = 0L;//todo по идее это два спареных целочисленных
 }

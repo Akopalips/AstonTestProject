@@ -11,8 +11,4 @@ public class TestprojException extends Exception{
     public TestprojException(String message) {
         super(message);
     }
-
-    public TestprojException(Throwable cause) {
-        super(cause);
-    }
 }
