@@ -26,5 +26,5 @@ public class Account {
 
     private String pin;
 
-    private Long funds = 0L;//todo по идее это два спареных целочисленных
+    private Long funds = 0L;
 }

@@ -3,7 +3,7 @@ package ru.aston.testproj.exception;
 /**
  * @author tuspring
  */
-public class TestprojException extends Exception{
+public class TestprojException extends Exception {
 
     public TestprojException() {
     }

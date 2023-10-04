@@ -9,6 +9,7 @@ import static ru.aston.testproj.util.Constants.NEGATIVE_WITHDRAW_VALUE;
 import lombok.Data;
 
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -18,14 +19,14 @@ import jakarta.validation.constraints.Size;
 @Data
 public class AccountWithdrawDto {
 
-    @NotNull(message = ACCOUNT_NOT_SELECTED)
+    @NotBlank(message = ACCOUNT_NOT_SELECTED)
     protected String name;
 
     @NotNull(message = EMPTY_WITHDRAW_VALUE)
     @Min(value = 0, message = NEGATIVE_WITHDRAW_VALUE)
     protected Long withdraw;
 
-    @NotNull(message = EMPTY_PIN_CODE)
+    @NotBlank(message = EMPTY_PIN_CODE)
     @Size(min = 4, max = 4, message = INVALID_PIN_CODE_LENGTH)
     protected String pin;
 }

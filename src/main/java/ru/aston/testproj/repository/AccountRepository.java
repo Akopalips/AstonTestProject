@@ -10,6 +10,7 @@ import ru.aston.testproj.domain.model.Account;
  * @author tuspring
  */
 public interface AccountRepository extends JpaRepository<Account, UUID> {
+
     Optional<Account> findByName(String name);
 
 }

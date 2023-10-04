@@ -1,5 +1,7 @@
 package ru.aston.testproj.exception.handler;
 
+import static ru.aston.testproj.util.Constants.UNKNOWN_EXCEPTION;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -36,7 +38,7 @@ public class TestprojExceptionHandler {
     @ExceptionHandler(value = DataAccessException.class)
     public ResponseEntity<MessageDto> DataAccessExceptionHandler(DataAccessException e) {
         return new ResponseEntity<>(
-            new MessageDto("Неизвестная ошибка."), HttpStatus.BAD_REQUEST);
+            new MessageDto(UNKNOWN_EXCEPTION), HttpStatus.BAD_REQUEST);
     }
 
     //-----------------------extends TestprojException
@@ -61,6 +63,6 @@ public class TestprojExceptionHandler {
     @ExceptionHandler(value = TestprojException.class)
     public ResponseEntity<MessageDto> TestprojExceptionHandlerMethod(TestprojException e) {
         return new ResponseEntity<>(
-            new MessageDto("Неизвестная ошибка."), HttpStatus.BAD_REQUEST);
+            new MessageDto(UNKNOWN_EXCEPTION), HttpStatus.BAD_REQUEST);
     }
 }

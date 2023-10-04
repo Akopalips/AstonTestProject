@@ -1,12 +1,14 @@
 package ru.aston.testproj.exception;
 
+import static ru.aston.testproj.util.Constants.WRONG_PIN;
+
 /**
  * @author tuspring
  */
-public class WrongPinException extends TestprojException{
+public class WrongPinException extends TestprojException {
 
     public WrongPinException() {
-        super("Неверный PIN-код.");
+        super(WRONG_PIN);
     }
 
     public WrongPinException(String message) {

@@ -16,7 +16,7 @@ import ru.aston.testproj.domain.model.Account;
 public class AccountMapper extends ConfigurableMapper {
 
     @Override
-    protected void configureFactoryBuilder (DefaultMapperFactory.Builder factoryBuilder){
+    protected void configureFactoryBuilder(DefaultMapperFactory.Builder factoryBuilder) {
         factoryBuilder
             .mapNulls(false)
             .build();
