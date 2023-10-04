@@ -21,45 +21,46 @@ import ru.aston.testproj.exception.WrongPinException;
 public class TestprojExceptionHandler {
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity<String> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
-        return new ResponseEntity(
+    public ResponseEntity<MessageDto> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
+        return new ResponseEntity<>(
             new MessageDto(e.getBindingResult().getFieldError().getDefaultMessage()), HttpStatus.BAD_REQUEST);
     }
+
     //-----------------------extends DataAccessException
     @ExceptionHandler(value = DataIntegrityViolationException.class)
-    public ResponseEntity<String> dataIntegrityViolationExceptionHandler(DataIntegrityViolationException e) {
-        return new ResponseEntity(
+    public ResponseEntity<MessageDto> dataIntegrityViolationExceptionHandler(DataIntegrityViolationException e) {
+        return new ResponseEntity<>(
             new MessageDto("Нарушение уникальности."), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(value = DataAccessException.class)
-    public ResponseEntity<String> DataAccessExceptionHandler(DataAccessException e) {
-        return new ResponseEntity(
+    public ResponseEntity<MessageDto> DataAccessExceptionHandler(DataAccessException e) {
+        return new ResponseEntity<>(
             new MessageDto("Неизвестная ошибка."), HttpStatus.BAD_REQUEST);
     }
 
     //-----------------------extends TestprojException
     @ExceptionHandler(value = EntityNotFoundException.class)
-    public ResponseEntity<String> entityNotFoundExceptionHandler(EntityNotFoundException e) {
-        return new ResponseEntity(
+    public ResponseEntity<MessageDto> entityNotFoundExceptionHandler(EntityNotFoundException e) {
+        return new ResponseEntity<>(
             new MessageDto(e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = NotEnoughFundsException.class)
-    public ResponseEntity<String> notEnoughFundsExceptionHandler(NotEnoughFundsException e) {
-        return new ResponseEntity(
+    public ResponseEntity<MessageDto> notEnoughFundsExceptionHandler(NotEnoughFundsException e) {
+        return new ResponseEntity<>(
             new MessageDto(e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = WrongPinException.class)
-    public ResponseEntity<String> wrongPinExceptionHandler(WrongPinException e) {
-        return new ResponseEntity(
+    public ResponseEntity<MessageDto> wrongPinExceptionHandler(WrongPinException e) {
+        return new ResponseEntity<>(
             new MessageDto(e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = TestprojException.class)
-    public ResponseEntity<String> TestprojExceptionHandler(TestprojException e) {
-        return new ResponseEntity(
+    public ResponseEntity<MessageDto> TestprojExceptionHandlerMethod(TestprojException e) {
+        return new ResponseEntity<>(
             new MessageDto("Неизвестная ошибка."), HttpStatus.BAD_REQUEST);
     }
 }

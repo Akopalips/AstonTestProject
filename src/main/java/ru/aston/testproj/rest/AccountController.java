@@ -10,15 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.extern.slf4j.Slf4j;
-import java.util.HashSet;
 
 import jakarta.validation.Valid;
+import ru.aston.testproj.domain.dto.MessageDto;
 import ru.aston.testproj.domain.dto.account.AccountCreateDto;
 import ru.aston.testproj.domain.dto.account.AccountDepositDto;
 import ru.aston.testproj.domain.dto.account.AccountGetDto;
 import ru.aston.testproj.domain.dto.account.AccountTransferDto;
 import ru.aston.testproj.domain.dto.account.AccountWithdrawDto;
-import ru.aston.testproj.domain.dto.MessageDto;
 import ru.aston.testproj.exception.EntityNotFoundException;
 import ru.aston.testproj.exception.TestprojException;
 import ru.aston.testproj.repository.AccountRepository;
@@ -33,6 +32,7 @@ import ru.aston.testproj.util.AccountMapper;
 @RequestMapping(value = "/account")
 @Slf4j
 public class AccountController {
+
     @Autowired
     private AccountRepository repository;
     @Autowired
@@ -50,7 +50,7 @@ public class AccountController {
     }
 
     @PostMapping(value = "/deposit", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public MessageDto depositFounds(@Valid @RequestBody AccountDepositDto dto) throws EntityNotFoundException {
+    public MessageDto depositFounds(@Valid @RequestBody AccountDepositDto dto) throws TestprojException {
         dto.setName(dto.getName().trim());
         log.info("Received request with dto {} to deposit funds.", dto);
         service.deposit(dto);
@@ -74,33 +74,9 @@ public class AccountController {
         return new MessageDto("Успешный перевод");
     }
 
-    @GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)//todo пагинация?
+    @GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)//todo пагинация? тогда и тесты к ней не забыть
     public Iterable<AccountGetDto> list() {
         log.info("Received request to print accounts.");
         return mapper.mapAsList(service.list(), AccountGetDto.class);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -23,5 +23,4 @@ public class AccountCreateDto {
     @NotNull(message = EMPTY_PIN_CODE)
     @Size(min = 4, max = 4, message = INVALID_PIN_CODE)
     protected String pin;
-
 }

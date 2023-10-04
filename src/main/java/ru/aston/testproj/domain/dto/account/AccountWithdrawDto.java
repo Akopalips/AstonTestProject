@@ -28,5 +28,4 @@ public class AccountWithdrawDto {
     @NotNull(message = EMPTY_PIN_CODE)
     @Size(min = 4, max = 4, message = INVALID_PIN_CODE_LENGTH)
     protected String pin;
-
 }
