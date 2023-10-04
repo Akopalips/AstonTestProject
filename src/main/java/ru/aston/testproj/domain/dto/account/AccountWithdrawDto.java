@@ -3,15 +3,16 @@ package ru.aston.testproj.domain.dto.account;
 import static ru.aston.testproj.util.Constants.ACCOUNT_NOT_SELECTED;
 import static ru.aston.testproj.util.Constants.EMPTY_PIN_CODE;
 import static ru.aston.testproj.util.Constants.EMPTY_WITHDRAW_VALUE;
-import static ru.aston.testproj.util.Constants.INVALID_PIN_CODE_LENGTH;
+import static ru.aston.testproj.util.Constants.INVALID_PIN_CODE;
 import static ru.aston.testproj.util.Constants.NEGATIVE_WITHDRAW_VALUE;
+import static ru.aston.testproj.util.Constants.PIN_REGEX;
 
 import lombok.Data;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Pattern;
 
 /**
  * @author tuspring
@@ -27,6 +28,6 @@ public class AccountWithdrawDto {
     protected Long withdraw;
 
     @NotBlank(message = EMPTY_PIN_CODE)
-    @Size(min = 4, max = 4, message = INVALID_PIN_CODE_LENGTH)
+    @Pattern(regexp = PIN_REGEX, message = INVALID_PIN_CODE)
     protected String pin;
 }

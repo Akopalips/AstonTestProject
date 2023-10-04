@@ -11,7 +11,7 @@ public class Constants {
 
     public static final String ACCOUNT_NOT_SELECTED = "Не указан аккаунт.";
     public static final String EMPTY_PIN_CODE = "Пустой PIN-код.";
-    public static final String INVALID_PIN_CODE_LENGTH = "Неверная длинна PIN-кода.";
+    public static final String INVALID_PIN_CODE = "Некорректный PIN-кода.";
     public static final String EMPTY_TRANSFER_VALUE = "Отсутствует значение перевода.";
     public static final String NEGATIVE_TRANSFER_VALUE = "Отрицательное значение перевода.";
     public static final String EMPTY_WITHDRAW_VALUE = "Отсутствует значение списания.";
@@ -44,4 +44,5 @@ public class Constants {
     public static final String NO_SUCH_ENTITY = "No such entity {}.";
     public static final String NOT_EQUALS_PINS_AND = "Not equals pins {} and {}";
     public static final String SOURCE_ACCOUNT_HAS_NOT_ENOUGH_FUNDS_CURRENT_TRANSFER_NEEDED = "Source account {} has not enough funds: current {} transfer needed {}.";
+    public static final String PIN_REGEX = "^[0-9]{4}$";
 }
