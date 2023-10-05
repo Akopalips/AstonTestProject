@@ -1,6 +1,7 @@
 package ru.aston.testproj.domain.dto.account;
 
 import lombok.Data;
+import java.math.BigDecimal;
 
 
 /**
@@ -11,5 +12,5 @@ public class AccountGetDto {
 
     protected String name;
 
-    protected Long funds;
+    protected BigDecimal funds;
 }

@@ -10,6 +10,8 @@ import static ru.aston.testproj.util.Constants.PIN_REGEX;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 import jakarta.validation.constraints.AssertFalse;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -30,7 +32,7 @@ public class AccountTransferDto {
 
     @NotNull(message = EMPTY_TRANSFER_VALUE)
     @Min(value = 0, message = NEGATIVE_TRANSFER_VALUE)
-    protected Long transfer;
+    protected BigDecimal transfer;
 
     @NotBlank(message = EMPTY_PIN_CODE)
     @Pattern(regexp = PIN_REGEX, message = INVALID_PIN_CODE)

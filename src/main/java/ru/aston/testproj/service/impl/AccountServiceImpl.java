@@ -16,6 +16,7 @@ import static ru.aston.testproj.util.Constants.WITHDRAW_TO_ACCOUNT_SUCCESSFUL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 import ru.aston.testproj.domain.dto.account.AccountCreateDto;
@@ -55,7 +56,7 @@ public class AccountServiceImpl implements AccountService {
     public void deposit(AccountDepositDto dto) throws EntityNotFoundException {
         log.info(START_DEPOSIT_TO_ACCOUNT, dto.getName());
         Account dbEntity = getAccountOrThrowException(dto.getName());
-        dbEntity.setFunds(dbEntity.getFunds() + dto.getDeposit());//todo value out of range
+        dbEntity.setFunds(dbEntity.getFunds().add(dto.getDeposit()));
         repository.save(dbEntity);
         log.info(DEPOSIT_TO_ACCOUNT_SUCCESSFUL, dto.getName());
     }
@@ -67,11 +68,11 @@ public class AccountServiceImpl implements AccountService {
 
         checkEqualPinsOrElseThrowException(dto.getPin(), dbEntity.getPin());
 
-        final Long sourceFunds = dbEntity.getFunds();
-        final Long withdraw = dto.getWithdraw();
+        final BigDecimal sourceFunds = dbEntity.getFunds();
+        final BigDecimal withdraw = dto.getWithdraw();
         checkEnoughFundsOrElseThrowException(dbEntity.getName(), sourceFunds, withdraw);
 
-        dbEntity.setFunds(sourceFunds - withdraw);
+        dbEntity.setFunds(sourceFunds.subtract(withdraw));
         repository.save(dbEntity);
         log.info(WITHDRAW_TO_ACCOUNT_SUCCESSFUL, dto.getName());
     }
@@ -83,13 +84,13 @@ public class AccountServiceImpl implements AccountService {
 
         checkEqualPinsOrElseThrowException(dto.getSourceAccountPin(), dbEntitySource.getPin());
 
-        final Long sourceFunds = dbEntitySource.getFunds();
-        final Long transfer = dto.getTransfer();
+        final BigDecimal sourceFunds = dbEntitySource.getFunds();
+        final BigDecimal transfer = dto.getTransfer();
         checkEnoughFundsOrElseThrowException(dbEntitySource.getName(), sourceFunds, transfer);
 
         Account dbEntityTarget = getAccountOrThrowException(dto.getTargetAccountName());
-        dbEntitySource.setFunds(sourceFunds - transfer);
-        dbEntityTarget.setFunds(dbEntityTarget.getFunds() + transfer);
+        dbEntitySource.setFunds(sourceFunds.subtract(transfer));
+        dbEntityTarget.setFunds(dbEntityTarget.getFunds().add(transfer));
         repository.saveAll(Arrays.asList(dbEntitySource, dbEntityTarget));
         log.info(TRANSFER_FROM_TO_COMPLETE, dto.getSourceAccountName(), dto.getTargetAccountName());
     }
@@ -114,9 +115,9 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
-    private static void checkEnoughFundsOrElseThrowException(String accountName, Long currentAccountFunds,
-                                                             Long withdraw) throws NotEnoughFundsException {
-        if (currentAccountFunds < withdraw) {
+    private static void checkEnoughFundsOrElseThrowException(String accountName, BigDecimal currentAccountFunds,
+                                                             BigDecimal withdraw) throws NotEnoughFundsException {
+        if (currentAccountFunds.compareTo(withdraw) < 0) {
             log.info(SOURCE_ACCOUNT_HAS_NOT_ENOUGH_FUNDS_CURRENT_TRANSFER_NEEDED,
                      accountName, currentAccountFunds, withdraw);
             throw new NotEnoughFundsException();

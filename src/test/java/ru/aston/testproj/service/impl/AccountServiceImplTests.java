@@ -13,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
@@ -61,7 +62,7 @@ class AccountServiceImplTests {
         //Given
         AccountDepositDto dto = new AccountDepositDto();
         dto.setName("123");
-        dto.setDeposit(1234L);
+        dto.setDeposit(BigDecimal.valueOf(1234));
         doReturn(Optional.of(new Account())).when(repository).findByName(any());
         doReturn(new Account()).when(repository).save(any());
         //When
@@ -75,7 +76,7 @@ class AccountServiceImplTests {
         //Given
         AccountDepositDto dto = new AccountDepositDto();
         dto.setName("123");
-        dto.setDeposit(1234L);
+        dto.setDeposit(BigDecimal.valueOf(1234));
         doReturn(Optional.empty()).when(repository).findByName(any());
 
         //When-Then
@@ -89,14 +90,14 @@ class AccountServiceImplTests {
         //Given
         AccountWithdrawDto dto = new AccountWithdrawDto();
         dto.setName("123");
-        dto.setWithdraw(1234L);
+        dto.setWithdraw(BigDecimal.valueOf(1234));
         dto.setPin("1234");
 
         Account entity = new Account();
         entity.setId(UUID.randomUUID());
         entity.setName("123");
         entity.setPin("1234");
-        entity.setFunds(5000L);
+        entity.setFunds(BigDecimal.valueOf(5000));
 
         doReturn(Optional.of(entity)).when(repository).findByName(any());
         doReturn(new Account()).when(repository).save(any());
@@ -111,7 +112,7 @@ class AccountServiceImplTests {
         //Given
         AccountWithdrawDto dto = new AccountWithdrawDto();
         dto.setName("123");
-        dto.setWithdraw(1234L);
+        dto.setWithdraw(BigDecimal.valueOf(1234));
         dto.setPin("1234");
 
         doReturn(Optional.empty()).when(repository).findByName(any());
@@ -125,14 +126,14 @@ class AccountServiceImplTests {
         //Given
         AccountWithdrawDto dto = new AccountWithdrawDto();
         dto.setName("123");
-        dto.setWithdraw(1234L);
+        dto.setWithdraw(BigDecimal.valueOf(1234));
         dto.setPin("1234");
 
         Account entity = new Account();
         entity.setId(UUID.randomUUID());
         entity.setName("123");
         entity.setPin("1234");
-        entity.setFunds(500L);
+        entity.setFunds(BigDecimal.valueOf(500));
 
         doReturn(Optional.of(entity)).when(repository).findByName(any());
         //Then-When
@@ -145,14 +146,14 @@ class AccountServiceImplTests {
         //Given
         AccountWithdrawDto dto = new AccountWithdrawDto();
         dto.setName("123");
-        dto.setWithdraw(1234L);
+        dto.setWithdraw(BigDecimal.valueOf(1234));
         dto.setPin("1234");
 
         Account entity = new Account();
         entity.setId(UUID.randomUUID());
         entity.setName("123");
         entity.setPin("1235");
-        entity.setFunds(5000L);
+        entity.setFunds(BigDecimal.valueOf(5000));
 
         doReturn(Optional.of(entity)).when(repository).findByName(any());
         //Then-When
@@ -167,20 +168,20 @@ class AccountServiceImplTests {
         AccountTransferDto dto = new AccountTransferDto();
         dto.setSourceAccountName("Source");
         dto.setTargetAccountName("Target");
-        dto.setTransfer(1234L);
+        dto.setTransfer(BigDecimal.valueOf(1234));
         dto.setSourceAccountPin("1234");
 
         Account entitySource = new Account();
         entitySource.setId(UUID.randomUUID());
         entitySource.setName("Source");
         entitySource.setPin("1234");
-        entitySource.setFunds(5000L);
+        entitySource.setFunds(BigDecimal.valueOf(5000));
 
         Account entityTarget = new Account();
         entityTarget.setId(UUID.randomUUID());
         entityTarget.setName("Target");
         entityTarget.setPin("1234");
-        entityTarget.setFunds(5000L);
+        entityTarget.setFunds(BigDecimal.valueOf(5000));
 
         doReturn(Optional.of(entitySource)).when(repository).findByName("Source");
         doReturn(Optional.of(entityTarget)).when(repository).findByName("Target");
@@ -197,14 +198,14 @@ class AccountServiceImplTests {
         AccountTransferDto dto = new AccountTransferDto();
         dto.setSourceAccountName("Source");
         dto.setTargetAccountName("Target");
-        dto.setTransfer(1234L);
+        dto.setTransfer(BigDecimal.valueOf(1234));
         dto.setSourceAccountPin("1234");
 
         Account entitySource = new Account();
         entitySource.setId(UUID.randomUUID());
         entitySource.setName("Source");
         entitySource.setPin("1234");
-        entitySource.setFunds(5000L);
+        entitySource.setFunds(BigDecimal.valueOf(5000));
 
         doReturn(Optional.empty()).when(repository).findByName("Source");
 
@@ -219,14 +220,14 @@ class AccountServiceImplTests {
         AccountTransferDto dto = new AccountTransferDto();
         dto.setSourceAccountName("Source");
         dto.setTargetAccountName("Target");
-        dto.setTransfer(1234L);
+        dto.setTransfer(BigDecimal.valueOf(1234));
         dto.setSourceAccountPin("1234");
 
         Account entitySource = new Account();
         entitySource.setId(UUID.randomUUID());
         entitySource.setName("Source");
         entitySource.setPin("1235");
-        entitySource.setFunds(5000L);
+        entitySource.setFunds(BigDecimal.valueOf(5000));
 
         doReturn(Optional.of(entitySource)).when(repository).findByName("Source");
 
@@ -241,14 +242,14 @@ class AccountServiceImplTests {
         AccountTransferDto dto = new AccountTransferDto();
         dto.setSourceAccountName("Source");
         dto.setTargetAccountName("Target");
-        dto.setTransfer(1234L);
+        dto.setTransfer(BigDecimal.valueOf(1234));
         dto.setSourceAccountPin("1234");
 
         Account entitySource = new Account();
         entitySource.setId(UUID.randomUUID());
         entitySource.setName("Source");
         entitySource.setPin("1234");
-        entitySource.setFunds(500L);
+        entitySource.setFunds(BigDecimal.valueOf(500));
 
         doReturn(Optional.of(entitySource)).when(repository).findByName("Source");
 
@@ -263,14 +264,14 @@ class AccountServiceImplTests {
         AccountTransferDto dto = new AccountTransferDto();
         dto.setSourceAccountName("Source");
         dto.setTargetAccountName("Target");
-        dto.setTransfer(1234L);
+        dto.setTransfer(BigDecimal.valueOf(1234));
         dto.setSourceAccountPin("1234");
 
         Account entitySource = new Account();
         entitySource.setId(UUID.randomUUID());
         entitySource.setName("Source");
         entitySource.setPin("1234");
-        entitySource.setFunds(5000L);
+        entitySource.setFunds(BigDecimal.valueOf(5000));
 
         doReturn(Optional.of(entitySource)).when(repository).findByName("Source");
         doReturn(Optional.empty()).when(repository).findByName("Target");

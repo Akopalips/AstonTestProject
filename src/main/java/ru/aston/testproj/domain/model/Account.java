@@ -2,6 +2,7 @@ package ru.aston.testproj.domain.model;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -26,5 +27,5 @@ public class Account {
 
     private String pin;
 
-    private Long funds = 0L;
+    private BigDecimal funds = BigDecimal.ZERO;
 }

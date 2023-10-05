@@ -9,6 +9,8 @@ import static ru.aston.testproj.util.Constants.PIN_REGEX;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -25,7 +27,7 @@ public class AccountWithdrawDto {
 
     @NotNull(message = EMPTY_WITHDRAW_VALUE)
     @Min(value = 0, message = NEGATIVE_WITHDRAW_VALUE)
-    protected Long withdraw;
+    protected BigDecimal withdraw;
 
     @NotBlank(message = EMPTY_PIN_CODE)
     @Pattern(regexp = PIN_REGEX, message = INVALID_PIN_CODE)
